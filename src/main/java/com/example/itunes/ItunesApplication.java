@@ -11,6 +11,8 @@ import java.util.List;
 
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
+//Without the last argument, it fails to run
+//https://stackoverflow.com/questions/51221777/failed-to-configure-a-datasource-url-attribute-is-not-specified-and-no-embedd
 @RestController
 public class ItunesApplication {
 
@@ -25,12 +27,16 @@ public class ItunesApplication {
 
 
         try {
-            PreparedStatement preparedStatement =conn.prepareStatement("SELECT Name  from main.Genre WHERE GenreId=1");
+            PreparedStatement preparedStatement =conn.prepareStatement("SELECT Name  from Genre WHERE Name LIKE ?");
+
+            preparedStatement.setString(1,"Rock");
+
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()){
+                String genreName=resultSet.getString("Name");
 
-                System.out.printf(resultSet.getString("Name"));
+                System.out.println(genreName);
             }
 
             conn.close();
