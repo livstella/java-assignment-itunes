@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface CustomerDao {
+    public void getCustomerByID(Integer id);
 
 
 }

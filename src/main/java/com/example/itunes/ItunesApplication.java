@@ -1,5 +1,6 @@
 package com.example.itunes;
 
+import com.example.itunes.dao.CustomerDataAccessService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -21,6 +22,12 @@ public class ItunesApplication {
     public static void main(String[] args) {
         SpringApplication.run(ItunesApplication.class, args);
 
+        CustomerDataAccessService x= new CustomerDataAccessService();
+        x.getCustomerByID(2);
+
+
+
+/*
         Connection conn=ConnectionManager.getInstance().getConnection();
 
 
@@ -45,7 +52,7 @@ public class ItunesApplication {
             System.exit(-1);
         }
 
-
+*/
 
 
     }
