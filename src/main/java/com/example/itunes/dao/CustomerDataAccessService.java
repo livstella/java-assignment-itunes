@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CustomerDataAccessService {
@@ -137,25 +138,18 @@ public class CustomerDataAccessService {
         return customerList;
 
     };
-/*
+
     public void addCustomer(String firstName,String lastName,String country,Integer postalCode,Integer phone,String email){
 
 
         try {
-            preparedStatement = conn.prepareStatement("INSERT INTO Customer (FirstName, LastName, Country, PostalCode)");
-           // preparedStatement.setInt(1,id);
+            preparedStatement = conn.prepareStatement("INSERT INTO Customer (FirstName, LastName, Country, PostalCode, Phone, email) VALUES('firstName', 'lastName', 'country', 'postalCode', 'phone', 'email')");
 
-            ResultSet resultSet = preparedStatement.executeQuery();
 
-            Integer Id=resultSet.getInt("CustomerId");
-            String firstName=resultSet.getString("FirstName");
-            String lastName=resultSet.getString("LastName");
-            String country=resultSet.getString("Country");
-            Integer postalCode=resultSet.getInt("PostalCode");
-            Integer phone=resultSet.getInt("Phone");
-            String email=resultSet.getString("Email");
+           preparedStatement.executeUpdate();
 
-            System.out.println(id + firstName + lastName+country+postalCode+phone + email );
+
+            System.out.println("Success!..?" );
 
 
 
@@ -165,9 +159,33 @@ public class CustomerDataAccessService {
 
 
 
-    }*/
+    }
 
 
+
+public HashMap<String,Integer>getNumberOfCustomerByCountry(){
+        HashMap<String,Integer> customersInCountries= new HashMap<>();
+
+    try {
+        preparedStatement = conn.prepareStatement("SELECT COUNT(CustomerId), Country FROM Customer GROUP BY Country ORDER BY COUNT(CustomerId) DESC");
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            String country=resultSet.getString("Country");
+            Integer number=resultSet.getInt("COUNT(CustomerId)");
+            customersInCountries.put(country,number);
+
+            System.out.println(country + ": " + number );
+
+        }
+
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+return customersInCountries;
+}
 
 
 }

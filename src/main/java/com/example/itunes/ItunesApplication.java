@@ -24,6 +24,11 @@ public class ItunesApplication {
 
         CustomerDataAccessService x= new CustomerDataAccessService();
         x.getCustomerByID(2);
+        x.getCustomerByName("Trunte");
+
+        x.getNumberOfCustomerByCountry();
+
+   //x.addCustomer("Doggo","STick","Denmark", 1234,1234556, "trunte@sticks.com");
 
 
 
