@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.web.bind.annotation.RestController;
 
-//Without the last argument, it fails to run
-//https://stackoverflow.com/questions/51221777/failed-to-configure-a-datasource-url-attribute-is-not-specified-and-no-embedd
+import java.util.List;
+
 @RestController
 public class CustomerController {
     private final CustomerService customerService;
@@ -18,9 +18,39 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    public List<Customer> getAllCustomers() {
+        return customerService.getAllCustomers();
+    }
 
+    public void getCustomerByID(Integer id) {
+        customerService.getCustomerByID(id);
+    }
 
-    public void addCustomer(Integer id, Customer customer) {
-        customerService.addCustomer(id ,customer);
+    public void getCustomerByName(String name) {
+        customerService.getCustomerByName(name);
+    }
+
+    public List<Customer> getLimitedCustomers(Integer limit, Integer offSet) {
+        return customerService.getLimitedCustomer(limit, offSet);
+    }
+
+    public void addCustomer(Customer customer) {
+        customerService.addCustomer(customer);
+    }
+
+    public void updateCustomer(Integer id, Customer customer) {
+        customerService.updateCustomer(id, customer);
+    }
+
+    public List<Country> getCustomerAmountPerCountry() {
+        return customerService.getCustomerAmountPerCountry();
+    }
+
+    public List<Customer> getHighestSpenders() {
+        return customerService.getHighestSpenders();
+    }
+
+    public List<Customer> getMostPopularGenre() {
+        return customerService.getMostPopularGenre();
     }
 }
