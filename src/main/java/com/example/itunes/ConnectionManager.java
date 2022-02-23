@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionManager {
-    static final String URL = "jdbc:sqlite:C:\\Users\\LReinh\\Desktop\\Projects\\Java\\Itunes-project\\Itunes\\src\\main\\resources\\Chinook_Sqlite.sqlite";
+    static final String URL = "jdbc:sqlite:C:\\Users\\JJoha2\\Documents\\repos\\Java\\Assignments\\Assignment2\\java-assignment-itunes\\src\\main\\resources\\Chinook_Sqlite.sqlite";
     static private ConnectionManager instance;
     private Connection connection;
 

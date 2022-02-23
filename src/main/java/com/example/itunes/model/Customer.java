@@ -12,4 +12,8 @@ public class Customer {
     private Integer id;
     private String firstName;
 
+    public Customer(Integer id, String firstName) {
+        this.id = id;
+        this.firstName = firstName;
+    }
 }
