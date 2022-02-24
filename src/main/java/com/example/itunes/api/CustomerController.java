@@ -5,10 +5,12 @@ import com.example.itunes.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
+@RequestMapping("api/v1/customer")
 @RestController
 public class CustomerController {
     private final CustomerService customerService;
@@ -18,39 +20,48 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    @GetMapping
     public List<Customer> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 
-    public void getCustomerByID(Integer id) {
+    @GetMapping(path="{id}")
+    public void getCustomerByID(@PathVariable("id") Integer id) {
         customerService.getCustomerByID(id);
     }
 
-    public void getCustomerByName(String name) {
-        customerService.getCustomerByName(name);
+    @GetMapping(path="name/{firstName}")
+    public void getCustomerByName(@PathVariable("firstName") String firstName) {
+        customerService.getCustomerByName(firstName);
     }
 
-    public List<Customer> getLimitedCustomers(Integer limit, Integer offSet) {
+    @GetMapping(path="limit")
+    public List<Customer> getLimitedCustomers(@PathVariable("limit") Integer limit, Integer offSet) {
         return customerService.getLimitedCustomer(limit, offSet);
     }
 
-    public void addCustomer(Customer customer) {
-        customerService.addCustomer(customer);
+    @PostMapping
+    public void addCustomer(String firstName, String lastName, String country, Integer postalCode, Integer phone, String email) {
+        customerService.addCustomer(firstName, lastName, country, postalCode, phone, email);
     }
 
-    public void updateCustomer(Integer id, Customer customer) {
-        customerService.updateCustomer(id, customer);
+    @PutMapping(path="update/{id}")
+    public void updateCustomer(String firstName, String lastName, String country, Integer postalCode, Integer phone, String email,@PathVariable("id") Integer id) {
+        customerService.updateCustomer(firstName, lastName, country, postalCode, phone, email, id);
     }
 
-    public List<Country> getCustomerAmountPerCountry() {
-        return customerService.getCustomerAmountPerCountry();
+    @GetMapping(path="country/1")
+    public HashMap<String, Integer> getNumberOfCustomerByCountry() {
+        return customerService.getNumberOfCustomerByCountry();
     }
 
-    public List<Customer> getHighestSpenders() {
+    @GetMapping(path="highest/1")
+    public HashMap<String, Integer> getHighestSpenders() {
         return customerService.getHighestSpenders();
     }
 
-    public List<Customer> getMostPopularGenre() {
-        return customerService.getMostPopularGenre();
+    @GetMapping(path="favourite/1")
+    public String getFavouriteGenre(String firstName) {
+        return customerService.getFavouriteGenre(firstName);
     }
 }
