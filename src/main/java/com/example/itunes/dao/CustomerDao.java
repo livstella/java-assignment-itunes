@@ -1,5 +1,6 @@
 package com.example.itunes.dao;
 
+
 import com.example.itunes.ConnectionManager;
 import com.example.itunes.model.Customer;
 
@@ -25,6 +26,5 @@ public interface CustomerDao {
     //PUT and POST
     public void addCustomer(String firstName,String lastName,String country,Integer postalCode,Integer phone,String email);
     public void updateCustomer(String firstName, String lastName, String country, Integer postalCode, Integer phone, String email, Integer id);
-
 
 }

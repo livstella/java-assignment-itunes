@@ -40,6 +40,7 @@ public class Customer {
         return country;
     }
 
+
     public void setCountry(String country) {
         this.country = country;
     }
@@ -66,5 +67,6 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
+
     }
 }

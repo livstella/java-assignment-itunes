@@ -10,16 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.*;
 import java.util.List;
 
-
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
 //Without the last argument, it fails to run
 //https://stackoverflow.com/questions/51221777/failed-to-configure-a-datasource-url-attribute-is-not-specified-and-no-embedd
-@RestController
 public class ItunesApplication {
 
-
-
     public static void main(String[] args) {
+
         SpringApplication.run(ItunesApplication.class, args);
 
         CustomerDataAccessService x= new CustomerDataAccessService();
@@ -39,7 +36,7 @@ public class ItunesApplication {
 
     @GetMapping
     public List<String> test(){
-        return List.of("Hello, World");
+        return List.of("Hello, World");*/
     }
 
 }
