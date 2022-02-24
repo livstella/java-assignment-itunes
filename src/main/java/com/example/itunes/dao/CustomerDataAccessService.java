@@ -2,6 +2,7 @@ package com.example.itunes.dao;
 
 import com.example.itunes.ConnectionManager;
 import com.example.itunes.model.Customer;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+@Repository("CustomerDao")
 public class CustomerDataAccessService {
     PreparedStatement preparedStatement = null;
     Connection conn = ConnectionManager.getInstance().getConnection();
@@ -47,8 +49,6 @@ public class CustomerDataAccessService {
         return customerList;
 
     }
-
-    ;
 
     public void getCustomerByID(Integer id) {
 

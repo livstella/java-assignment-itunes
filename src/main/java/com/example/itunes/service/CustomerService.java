@@ -1,19 +1,20 @@
 package com.example.itunes.service;
 
-import com.example.itunes.dao.CustomerDao;
+import com.example.itunes.dao.CustomerDataAccessService;
 import com.example.itunes.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
 public class CustomerService {
-    private final CustomerDao customerDao;
+    private final CustomerDataAccessService customerDao;
 
     @Autowired
-    public CustomerService(@Qualifier("") CustomerDao customerDao) {
+    public CustomerService(@Qualifier("CustomerDao") CustomerDataAccessService customerDao) {
         this.customerDao = customerDao;
     }
 
@@ -22,34 +23,34 @@ public class CustomerService {
     }
 
     public void getCustomerByID(Integer id) {
-        return customerDao.getCustomerByID(id);
+        customerDao.getCustomerByID(id);
     }
 
     public void getCustomerByName(String name) {
-        return customerDao.getCustomerByName(name);
+        customerDao.getCustomerByName(name);
     }
 
     public List<Customer> getLimitedCustomer(Integer limit, Integer offSet) {
-        return customerDao.getLimitedCustomer(limit, offSet);
+        return customerDao.getLimitedCustomers(limit, offSet);
     }
 
     public void addCustomer(String firstName, String lastName, String country, Integer postalCode, Integer phone, String email) {
-        return customerDao.addCustomer(firstName, lastName, country, postalCode, phone, email);
+        customerDao.addCustomer(firstName, lastName, country, postalCode, phone, email);
     }
 
-    public void updateCustomer(Integer id, Customer customer) {
-        customerDao.updateCustomer(id, customer);
+    public void updateCustomer(String firstName, String lastName, String country, Integer postalCode, Integer phone, String email, Integer id) {
+        customerDao.updateCustomer(firstName, lastName, country, postalCode, phone, email, id);
     }
 
-    public List<Country> getCustomerAmountPerCountry() {
-        return customerDao.getCustomerAmountPerCountry();
+    public HashMap<String, Integer> getNumberOfCustomerByCountry() {
+        return customerDao.getNumberOfCustomerByCountry();
     }
 
-    public List<Customer> getHighestSpenders() {
+    public HashMap<String, Integer> getHighestSpenders() {
         return customerDao.getHighestSpenders();
     }
 
-    public List<Customer> getMostPopularGenre() {
-        return customerDao.getMostPopularGenre();
+    public String getFavouriteGenre(String firstName) {
+        return customerDao.getFavouriteGenre(firstName);
     }
 }
