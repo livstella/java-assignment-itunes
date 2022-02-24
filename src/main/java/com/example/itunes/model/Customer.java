@@ -1,5 +1,7 @@
 package com.example.itunes.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Customer {
 
     private Integer id;
@@ -10,7 +12,9 @@ public class Customer {
     private Integer phone;
     private String email;
 
-    public Customer(Integer id, String firstName, String lastName, String country, Integer postalCode, Integer phone, String email) {
+    public Customer() {}
+
+    public Customer(@JsonProperty("id") Integer id,@JsonProperty("firstName") String firstName,@JsonProperty("lastName") String lastName,@JsonProperty("country") String country,@JsonProperty("postalCode") Integer postalCode,@JsonProperty("phone") Integer phone,@JsonProperty("email") String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
