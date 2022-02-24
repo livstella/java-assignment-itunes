@@ -23,41 +23,16 @@ public class ItunesApplication {
         SpringApplication.run(ItunesApplication.class, args);
 
         CustomerDataAccessService x= new CustomerDataAccessService();
-        x.getCustomerByID(2);
-        x.getCustomerByName("Trunte");
 
-        x.getNumberOfCustomerByCountry();
+       // x.getAllCustomers();
+        x.getCustomerByID(63);
+        //x.getCustomerByName("Trunte");
+       // x.getNumberOfCustomerByCountry();*/
+       // x.getHighestSpenders();
 
-   //x.addCustomer("Doggo","STick","Denmark", 1234,1234556, "trunte@sticks.com");
+       // x.getFavouriteGenre("luis");
 
-
-
-/*
-        Connection conn=ConnectionManager.getInstance().getConnection();
-
-
-
-
-        try {
-            PreparedStatement preparedStatement =conn.prepareStatement("SELECT Name  from Genre WHERE Name LIKE ?");
-
-            preparedStatement.setString(1,"Rock");
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()){
-                String genreName=resultSet.getString("Name");
-
-                System.out.println(genreName);
-            }
-
-            conn.close();
-        }catch (SQLException sqe){
-            sqe.printStackTrace();
-            System.exit(-1);
-        }
-
-*/
+   //x.updateCustomer("Doggo","STick","Denmark", 1234,1234556, "trunte@sticks.com",63);
 
 
     }
