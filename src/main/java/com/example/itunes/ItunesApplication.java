@@ -1,5 +1,6 @@
 package com.example.itunes;
 
+import com.example.itunes.dao.CustomerDataAccessService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -15,29 +16,20 @@ import java.util.List;
 public class ItunesApplication {
 
     public static void main(String[] args) {
-        Connection conn=ConnectionManager.getInstance().getConnection();
+
         SpringApplication.run(ItunesApplication.class, args);
 
-        /*try {
-            PreparedStatement preparedStatement =conn.prepareStatement("SELECT Name  from Genre WHERE Name LIKE ?");
+        CustomerDataAccessService x= new CustomerDataAccessService();
 
-            preparedStatement.setString(1,"Rock");
+       // x.getAllCustomers();
+        x.getCustomerByID(63);
+        //x.getCustomerByName("Trunte");
+       // x.getNumberOfCustomerByCountry();*/
+       // x.getHighestSpenders();
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+       // x.getFavouriteGenre("luis");
 
-            while (resultSet.next()){
-                String genreName=resultSet.getString("Name");
-
-                System.out.println(genreName);
-            }
-
-            conn.close();
-        }catch (SQLException sqe){
-            sqe.printStackTrace();
-            System.exit(-1);
-        }
-
-
+   //x.updateCustomer("Doggo","STick","Denmark", 1234,1234556, "trunte@sticks.com",63);
 
 
     }
