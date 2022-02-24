@@ -22,12 +22,12 @@ public class CustomerService {
         return customerDao.getAllCustomers();
     }
 
-    public void getCustomerByID(Integer id) {
-        customerDao.getCustomerByID(id);
+    public Customer getCustomerByID(Integer id) {
+        return customerDao.getCustomerByID(id);
     }
 
-    public void getCustomerByName(String name) {
-        customerDao.getCustomerByName(name);
+    public Customer getCustomerByName(String name) {
+        return customerDao.getCustomerByName(name);
     }
 
     public List<Customer> getLimitedCustomer(Integer limit, Integer offSet) {

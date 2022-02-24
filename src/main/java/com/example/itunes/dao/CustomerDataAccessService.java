@@ -50,16 +50,16 @@ public class CustomerDataAccessService {
 
     }
 
-    public void getCustomerByID(Integer id) {
-
+    public Customer getCustomerByID(Integer inputId) {
+        Customer customer = null;
 
         try {
             preparedStatement = conn.prepareStatement("SELECT * FROM Customer WHERE CustomerId=?");
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, inputId);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            Integer Id = resultSet.getInt("CustomerId");
+            Integer id = resultSet.getInt("CustomerId");
             String firstName = resultSet.getString("FirstName");
             String lastName = resultSet.getString("LastName");
             String country = resultSet.getString("Country");
@@ -69,16 +69,15 @@ public class CustomerDataAccessService {
 
             System.out.println(id + firstName + lastName + country + postalCode + phone + email);
 
-
+            customer = new Customer(id, firstName, lastName, country, postalCode, phone, email);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
+        return customer;
     }
 
-    public void getCustomerByName(String name) {
-
+    public Customer getCustomerByName(String name) {
+        Customer customer = null;
 
         try {
             preparedStatement = conn.prepareStatement("SELECT * FROM Customer WHERE FirstName LIKE ?");
@@ -96,12 +95,12 @@ public class CustomerDataAccessService {
 
             System.out.println(id + firstName + lastName + country + postalCode + phone + email);
 
-
+            customer = new Customer(id, firstName, lastName, country, postalCode, phone, email);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-
+        return customer;
     }
 
     public List<Customer> getLimitedCustomers(Integer limit, Integer offSet) {
@@ -225,9 +224,7 @@ public class CustomerDataAccessService {
                 highestSpenders.put(name, total);
 
                 System.out.println(name + ": " + total);
-
             }
-
 
         } catch (SQLException e) {
             e.printStackTrace();
